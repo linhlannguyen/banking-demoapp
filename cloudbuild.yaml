@@ -1,7 +1,8 @@
 timeout: 1200s
 substitutions:
   _REGION: us-central1
-  _CLUSTER: linh-cluster-gke
+  _CLUSTER: linh-dev-cluster
+  _PROJECTID: linh-dev
 steps:
   - name: gcr.io/cloud-builders/kubectl
     id: Configure kubectl
@@ -10,6 +11,7 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
       
   - name: gcr.io/cloud-builders/kubectl
@@ -18,6 +20,7 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
       
   - name: gcr.io/cloud-builders/kubectl
@@ -26,4 +29,5 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
